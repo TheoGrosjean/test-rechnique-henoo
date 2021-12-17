@@ -1,4 +1,4 @@
-listCars =
+const listCars =
   [
     {
       id : 1,
@@ -125,4 +125,4 @@ listCars =
         }
       }
     }
-  ];
+  ]; export default listCars;

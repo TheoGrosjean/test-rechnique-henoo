@@ -1,4 +1,7 @@
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'es6-promise/auto'
+import store from './store'
+
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,6 +23,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

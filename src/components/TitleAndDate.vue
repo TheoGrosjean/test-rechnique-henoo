@@ -2,6 +2,7 @@
   <div class="ry" role="alert">
     <h3>{{getDate()}}</h3>
     <h1> Afficher le tableau des voitures ici 👇</h1>
+    
   </div>
 </template>
 
