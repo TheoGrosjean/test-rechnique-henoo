@@ -1,76 +1,93 @@
 <template>
-  <div class="container">
-    <b-card
-      title="Freins"
-      img-src="https://besthqwallpapers.com/Uploads/24-3-2018/45580/thumb2-ferrari-wheels-4k-brake-caliper-2018-cars.jpg"
-      img-alt="Image"
-      tag="article"
-      style="max-width: 20rem"
-    >
-      <b-button @click="get_data()"
-        ><b-icon icon="pencil-fill" /> les détails</b-button
+  <div>
+    <b-card class="header " header="Les pièces techniques" >
+      <div
+        class="container"
+        v-for="item in this.$store.state.technique"
+        :key="item.id"
       >
+        <b-card
+          v-for="obj in item"
+          :key="obj.name"
+          :title="obj.name"
+          :img-src="obj.image"
+          style="max-width: 20rem"
+        >
+          <div>
+            <b-button @click="mod(obj)" v-b-modal.modal :data="item.name"
+              >voir les détails</b-button
+            >
+          </div>
+        </b-card>
+      </div>
     </b-card>
-    <b-card
-      title="Moteur"
-      img-src="https://timedm.com/wp-content/uploads/Nissan-GT-R-engine-v6.jpg"
-      img-alt="Image"
-      tag="article"
-      style="max-width: 20rem"
-    >
-      <b-card-text>
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </b-card-text>
-
-      <b-button href="#" variant="primary">Go somewhere</b-button>
-    </b-card>
-    <b-card
-      title="Echapement"
-      img-src="https://www.my-procar.com/thumbs/data/categories/visuels/bouchage-du-pot-d-echappement:7463.jpg"
-      img-alt="Image"
-      tag="article"
-      style="max-width: 20rem"
-    >
-      <b-card-text>
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </b-card-text>
-
-      <b-button href="#" variant="primary">Go somewhere</b-button>
-    </b-card>
+    <b-modal id="modal" title="Details">
+      <h1>voiture equipée(s) :</h1>
+      <h2 v-for="item in this.data_marque" :key="item.id">{{ item }}</h2>
+      <h1>modèle :</h1>
+      <h2 v-for="item in this.data_modele" :key="item.id">{{ item }}</h2>
+    </b-modal>
   </div>
 </template>
 
 <script>
-import listCars from '../model/listCars'
+import listCars from "../model/listCars";
 export default {
   data() {
-    return {};
+    return {
+      data_modele: [],
+      data_marque: [],
+    };
   },
   methods: {
+    mod(item) {
+      this.data_modele = [];
+      this.data_marque = [];
+      this.data_modele.push(item.model);
+      for (let i = 0; i <= this.$store.state.data[0].length - 1; i++) {
+        if (this.$store.state.data[0][i].technique.frein != null) {
+          if (this.$store.state.data[0][i].technique.frein.name === item.name)
+            this.data_marque.push(this.$store.state.data[0][i].nom_modele);
+        }
+        if (this.$store.state.data[0][i].technique.turbo != null) {
+          if (this.$store.state.data[0][i].technique.turbo.name === item.name)
+            this.data_marque.push(this.$store.state.data[0][i].nom_modele);
+        }
+        if (this.$store.state.data[0][i].technique.moteur != null) {
+          if (this.$store.state.data[0][i].technique.moteur.name === item.name)
+            this.data_marque.push(this.$store.state.data[0][i].nom_modele);
+        }
+        if (this.$store.state.data[0][i].technique.jante != null) {
+          if (this.$store.state.data[0][i].technique.jante.name === item.name)
+            this.data_marque.push(this.$store.state.data[0][i].nom_modele);
+        }
+      }
+    },
     set_json() {
       this.$store.commit("get_json", listCars);
     },
+
     get_data() {
-        console.log("data = ", this.$store.state.data)
-    }
+      this.$store.commit("get_technique");
+    },
   },
-  beforeMount(){
-      this.set_json()
-  }
+  beforeMount() {
+    this.set_json();
+    this.get_data();
+  },
 };
 </script>
 
 <style>
 .container {
   display: flex;
-  flex-direction: row;
+  gap: 20px;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-around;
+  align-items: baseline;
+  justify-content: flex-start;
 }
-.item {
-  display: flex;
+.header {
+  font-size: 30px;
+  width: 100%;
 }
 </style>

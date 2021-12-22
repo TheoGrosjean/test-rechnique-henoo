@@ -61,9 +61,9 @@ const listCars =
         },
         moteur : {
           id : 223,
-          name : "frein B",
-          model : "model frein B",
-          image : "https://lh3.googleusercontent.com/proxy/3lYE8cyjkvi1iuDdTrW4PwBHP6HIbibDYOAMFfzUeNbKfsX2jj8r1CU31aC9PuywHO0ybhJomZaGATzQCBOsoLZemDyqY1tzaTFgP_pOS7KbOhN-NDiz5r-C9vg"
+          name : "moteur B",
+          model : "model moteur B",
+          image : "https://www.largus.fr/images/images/brevet-moteur-honda-1.jpg",
         },
         echappement : {
           id : 334,
@@ -73,7 +73,7 @@ const listCars =
         },
         turbo : {
           id : 444,
-          name : "turbo A",
+          name : "turbo B",
           model : "model turbo A",
           image : "https://cdn3.swapland.fr/21923-home_default/turbo-garrett-compact-g42-1200-ar-115-t4-879779-5005s.jpg"
         },
@@ -113,7 +113,7 @@ const listCars =
         },
         turbo : {
           id : 444,
-          name : "turbo A",
+          name : "turbo C",
           model : "model turbo A",
           image : "https://cdn3.swapland.fr/21923-home_default/turbo-garrett-compact-g42-1200-ar-115-t4-879779-5005s.jpg"
         },
